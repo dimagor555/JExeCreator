@@ -22,7 +22,7 @@ public class ExeCreator {
 
     private void createCppFileToCompile(String command) {
         String cppFileStr = TemplateLoader.loadTemplate();
-        cppFileStr.replaceFirst("\"commandHere\"", command);
+        cppFileStr = cppFileStr.replace("commandHere", command);
         try {
             File cppFile = new File(CPP_FILE_NAME);
             cppFile.createNewFile();

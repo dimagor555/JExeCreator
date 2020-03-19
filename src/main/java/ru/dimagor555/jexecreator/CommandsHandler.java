@@ -2,39 +2,39 @@ package ru.dimagor555.jexecreator;
 
 public class CommandsHandler {
 
-    void handleCommand(String input) {
-        if (isCommand(input)) {
-            executeCommand(input);
+    void handleCommand(String[] args) {
+        String command = args[0];
+        if (isCommand(command)) {
+            executeCommand(args);
         } else {
-            Main.console.printCommandDoNotExist(getCommandStrFromInput(input));
+            Main.console.printCommandDoNotExist(command);
         }
     }
 
-    private void executeCommand(String input) {
-        Commands command = getCommand(getCommandStrFromInput(input).toUpperCase());
+    private void executeCommand(String[] args) {
+        Commands command = getCommand(args[0]);
         switch(command) {
             case HELP:
                 Main.console.printHelp();
                 break;
             case CREATE:
-                createExe(input);
+                createExe(args);
                 break;
         }
     }
 
-    private void createExe(String input) {
+    private void createExe(String[] args) {
         String out = null;
         String cmd = null;
-        String[] cmdWithArgs = input.split(" ");
-        for (int i = 1; i < cmdWithArgs.length; i++) {
+        for (int i = 1; i < args.length; i++) {
             try {
-                String[] argument = cmdWithArgs[i].split("=");
+                String[] argument = args[i].split("=");
                 switch (argument[0]) {
                     case "out":
-                        out = argument[1].replaceAll("\"", "");
+                        out = argument[1];
                         break;
                     case "cmd":
-                        cmd = argument[1].replaceAll("\"", "");
+                        cmd = argument[1];
                         break;
                 }
             } catch (ArrayIndexOutOfBoundsException ex) {
@@ -47,9 +47,8 @@ public class CommandsHandler {
         }
     }
 
-    private boolean isCommand(String input) {
+    private boolean isCommand(String command) {
         try {
-            String command = getCommandStrFromInput(input).toUpperCase();
             getCommand(command);
             return true;
         } catch (IllegalArgumentException ex) {
@@ -58,11 +57,7 @@ public class CommandsHandler {
     }
 
     private Commands getCommand(String command) throws IllegalArgumentException {
-        return Commands.valueOf(command);
-    }
-
-    private String getCommandStrFromInput(String input) {
-        return input.split(" ")[0];
+        return Commands.valueOf(command.toUpperCase());
     }
 
     enum Commands {

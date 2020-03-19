@@ -7,7 +7,6 @@ public class Main {
     static ExeCreator exeCreator = new ExeCreator();
 
     public static void main(String[] args) {
-        String command = String.join(" ", args);
-        commandsHandler.handleCommand(command);
+        commandsHandler.handleCommand(args);
     }
 }
