@@ -19,6 +19,7 @@ public class CommandsHandler {
 
     private void executeCommand(String[] args) {
         Commands command = getCommand(args[0]);
+        System.out.println(command.name());
         switch(command) {
             case HELP:
                 Main.console.printHelp();
