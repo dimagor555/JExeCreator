@@ -3,7 +3,13 @@ package ru.dimagor555.jexecreator;
 public class CommandsHandler {
 
     void handleCommand(String[] args) {
-        String command = args[0];
+        String command = "";
+        try {
+            command = args[0];
+        } catch (IndexOutOfBoundsException ex) {
+            Main.console.printCommandDoNotExist(command);
+            return;
+        }
         if (isCommand(command)) {
             executeCommand(args);
         } else {
