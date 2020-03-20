@@ -6,7 +6,7 @@ But you can put any command in it.
 ### Installing additional repositories
 Run `sudo apt install mingw-w64` to install Windows C++ compiler. JExeCreator uses `x86_64-w64-mingw32-gcc` to compile .exe file
 ### Installing JExeCreator
-1. Donwload
+1. [Donwload](https://github.com/dimagor555/JExeCreator/releases)
 2. Extract the archive
 3. Run `./JExeCreator-Linux/bin/JExeCreator` or `sh JExeCreator-Linux/bin/JExeCreator` to start the program
 
